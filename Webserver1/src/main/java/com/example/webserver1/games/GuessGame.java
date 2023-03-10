@@ -1,4 +1,4 @@
-package com.example.webserver1;
+package com.example.webserver1.games;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,12 +9,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/guessmysecretnumber")
-public class GuessMySecretNumber extends HttpServlet {
+public class GuessGame extends HttpServlet {
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html");
+
         int min = 1;
         int max = 10;
         int secretNumber = (int)Math.floor(Math.random() * (max - min + 1) + min);
@@ -24,7 +25,7 @@ public class GuessMySecretNumber extends HttpServlet {
             response.getWriter().println("<html><body> Too small!</body></html>");
         if (number1 == secretNumber)
             response.getWriter().println("<html><body> Correct!</body></html>");
-        if (number1 > secretNumber) {
+        else if (number1 > secretNumber) {
             response.getWriter().println("<html><body> Too high!</body></html>");
         }
 

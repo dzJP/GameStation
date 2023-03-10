@@ -1,4 +1,4 @@
-package com.example.webserver1;
+package com.example.webserver1.games;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,10 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.Random;
 
 @WebServlet("/secretnumber")
-public class SecretNumberSession extends HttpServlet {
+public class GuessServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
@@ -23,7 +22,7 @@ public class SecretNumberSession extends HttpServlet {
 
         Integer secretNumber = (Integer) session.getAttribute("secretNumber");
         if (secretNumber == null) { // are we here for the first time?
-            response.getWriter().print("<html><body> Secret number generated : " + generatedSecretNumber);
+            response.getWriter().print("<html><body> Secret number generated: " + generatedSecretNumber);
         }
         session.setAttribute("secret_number", secretNumber);
         response.setContentType("text/html");
